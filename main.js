@@ -9,7 +9,7 @@ function setup() {
     canvas = createCanvas(500, 420);
     canvas.position(400, 100);
     objectDetector = ml5.objectDetector('cocossd', modelLoaded);
-    document.getElementsById("status").innerHTML = "Status: Detecting... NOT your ip, probably your family ancestry";
+    document.getElementById("status").innerHTML = "Status: Detecting... NOT your ip, probably your family ancestry";
 }
 
 function draw() {
