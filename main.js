@@ -1,5 +1,6 @@
 img = "";
 status = "";
+objects = [];
 
 function preload() {
     bedroom = loadImage('bedroom.jpg');
@@ -12,18 +13,20 @@ function setup() {
     document.getElementById("status").innerHTML = "Status: Detecting... NOT your ip, probably your family ancestry";
 }
 
-function draw() {
-    image(bedroom, 0, 0, 500, 420);
-    fill("#000080");
-    text("plant!! with table!!!", 5, 194);
-    noFill();
-    stroke("#000080");
-    rect(0, 180, 120, 200);
-    fill("#000080");
-    text("silly bed", 108, 193);
-    noFill();
-    stroke("#000080");
-    rect(100, 180, 400, 240);
+  function draw() {
+    image(bedroom, 0, 0, 640, 420);
+
+    if(status != "") {
+        for (i = 0; i < objects.length; i++) {
+            document.getElementById("status").innerHTML = "Status: Ip not found.. but object detected!";
+            fill("#CD0241");
+            percent = floor(objects[i].confidence * 100);
+            text(objects[i].label+" "+percent+"%", objects[i].x, objects[i].y);
+            noFill();
+            stroke("#CD0241");
+            rect(objects[i].x, objects[i].y, objects[i].width + 15, objects[i].height + 15);
+        }
+    }
 }
 
 function modelLoaded() {
